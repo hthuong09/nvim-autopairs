@@ -75,6 +75,10 @@ M.on_confirm_done = function(opts)
         if opts.filetypes[filetype] == false then
           return
         end
+        
+        if opts.custom_check and not opts.custom_check() then
+          return
+        end
 
         -- If filetype is nil then use *
         local completion_options = opts.filetypes[filetype] or opts.filetypes["*"]
